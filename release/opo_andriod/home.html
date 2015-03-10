@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>OPO求合体</title>
+    <link rel="icon" type="image/GIF" href="res/favicon.ico"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="full-screen" content="yes"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <style>
+        body, canvas, div {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -khtml-user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            text-align: center;
+        }
+        #cover{
+            position: absolute;
+            margin: auto auto;
+            height: 100%;
+            width: 100%;
+            background-color: rgb(246,236,206);
+            z-index: 100;
+            top: 0%;
+
+        }
+    </style>
+    
+
+</head>
+<body style="padding:0; margin: 0;background-color: rgb(246,236,206);">
+    <div id="cover" >
+        <img src="res/opoBg.png" style="height:100%;width:100%">
+   </div>
+   <!-- <div id="opoWrapper" style="position: absolute;background-color: #FFFFFF"> -->
+       <canvas id="gameCanvas" width="511" height="775" style="display:none;top:0"></canvas>
+   <!-- </div> -->
+   
+<script src="game.min.js"></script>
+<script type="text/javascript">
+        var screenWidth = screen.width;
+        
+        // var hasGl = false;
+        // var wrapper = document.getElementById('opoWrapper');
+        // wrapper.style.width = screenWidth+"px";
+        // wrapper.style.height = screenWidth*775/511+"px";
+
+        $("#gameCanvas").width(screenWidth);
+        $("#gameCanvas").height(screenWidth*775/511);
+
+        // var canvas;
+        // var ctx;
+        // var exts;
+
+        // try {
+        //   canvas = document.createElement('canvas');
+        //   hasGl = canvas.getContext('webgl');
+        //   exts = hasGl.getSupportedExtensions();
+        // }
+        // catch (e) {
+        //   console.log(e);
+        // }
+        // gl = canvas.getContext("webgl");
+        // alert(gl);
+
+        // var canvas = document.getElementById('gameCanvas');
+        // var hasGl = canvas.getContext("webgl");
+        // hasGl = gl == null?false:true;
+
+        cc.game.run();
+
+</script>
+
+
+
+
+
+</body>
+</html>

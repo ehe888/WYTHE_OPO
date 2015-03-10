@@ -34,7 +34,9 @@ var rollback = function(client, done) {
 var routes = require('./routes/index');
 var app = express();
 
-app.use(express.static(path.join(__dirname, config.debug ? 'static' : 'release')));
+app.use("/", express.static(path.join(__dirname, config.debug ? 'static' : 'release')));
+app.use("/opo_android", express.static(path.join(__dirname, config.debug ? 'static' : 'release')));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -51,8 +53,24 @@ app.use(cookieParser("MKGM-WYTHE-OPO-5703"));
 
 app.get('/', function(req, res, next) {
     console.log("access website root");
-    res.sendFile(path.join(__dirname, config.debug ? './static' : './release', 'home.html'));
+    var ua = req.headers['user-agent'].toLowerCase();
+
+    
+    if(!ua || ua.indexOf("iphone") < 0){
+        console.log("user agent: " + ua);
+        res.redirect("/opo_android");
+    }else{
+        res.sendFile(path.join(__dirname, config.debug ? './static' : './release', 'home.html'));
+    }
 });
+
+app.get('/opo_android', function(req, res, next) {
+    console.log("non ios device");
+
+    res.sendFile(path.join(__dirname, config.debug ? './static/opo_android' : './release/opo_android', 'home.html'));
+    
+});
+
 
 app.post('/play', function(req, res, next){
 
